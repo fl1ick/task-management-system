@@ -44,11 +44,9 @@
                         </label>
                     </div>
                 </div>
-                <!-- /.col -->
                 <div class="col-4">
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button>
                 </div>
-                <!-- /.col -->
             </div>
         </form>
 
@@ -57,6 +55,9 @@
                 <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
             </p>
         @endif
+
+        <p class="mb-0 text-center">
+            {{ __('Don\'t have an account?') }} <a href="{{ route('register') }}" class="text-primary">{{ __('Register') }}</a>
+        </p>
     </div>
-    <!-- /.login-card-body -->
 @endsection

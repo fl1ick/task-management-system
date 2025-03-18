@@ -13,14 +13,11 @@ return new class extends Migration
     {
         Schema::create('tbl_boards', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('create_time');
-            $table->dateTime('update_time');
-            $table->integer('create_id');
-            $table->integer('update_id');
-            $table->tinyInteger('archived');
-            $table->string('name');
-            $table->text('description')->nullable();
-        });
+            $table->string('name'); // Nama board
+            $table->text('description')->nullable(); // Deskripsi board
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // User yang membuat board
+            $table->timestamps();
+        }); 
     }
 
     /**

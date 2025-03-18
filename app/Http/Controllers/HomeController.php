@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalTask = Task::count();
+        $inProgressTask = Task::where('status', 'in_progress')->count();
+        $completedTask = Task::where('status', 'done')->count();
+        $latestTasks = Task::latest()->limit(5)->get();
+
+        return view('home', compact('totalTask', 'inProgressTask', 'completedTask', 'latestTasks'));
     }
 }

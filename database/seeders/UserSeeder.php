@@ -20,12 +20,6 @@ class UserSeeder extends Seeder
                 'password'       => bcrypt('123'),
                 'remember_token' => null,
             ],
-            [
-                'name'           => 'saipul',
-                'email'          => 'saipul@admin.com',
-                'password'       => bcrypt('123'),
-                'remember_token' => null,
-            ],
         ];
 
         User::insert($users);

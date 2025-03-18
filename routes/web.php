@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BoardsController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    $boards = \App\Models\Boards::all();
+    return view('welcome', compact('boards'));
 });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
-    ->middleware('auth')
-    ->name('home');
-
 
 Auth::routes();
 
@@ -32,4 +31,10 @@ Route::group(['middleware' => 'isAdmin','prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('boards', BoardsController::class);
+    Route::get('/tasks/{board}', [TasksController::class, 'index'])->name('tasks.index');
+    Route::post('/tasks/{task}/update-status', [TasksController::class, 'updateStatus']);
 });
