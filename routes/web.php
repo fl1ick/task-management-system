@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\ContactController; // Tambahkan ini jika Anda menggunakan ContactController
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,10 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'isAdmin','prefix' => 'admin', 'as' => 'admin.'], function() {
+// Route untuk mengirim data kontak (contact.submit)
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit'); // Gunakan ContactController dan method submit
+
+Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('permissions', \App\Http\Controllers\Admin\PermissionController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
