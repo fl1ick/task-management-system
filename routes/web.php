@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardsController;
 use App\Http\Controllers\TasksController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
