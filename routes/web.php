@@ -3,7 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardsController;
 use App\Http\Controllers\TasksController;
+<<<<<<< HEAD
 use App\Http\Controllers\ContactController; // Tambahkan ini jika Anda menggunakan ContactController
+=======
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactController;
+>>>>>>> aa77acd26f26d2e6d970a3ad5d25f8beb4371ad5
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +27,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
